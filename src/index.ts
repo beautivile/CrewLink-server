@@ -32,7 +32,7 @@ if (httpsEnabled) {
 }
 const io = socketIO(server);
 
-const pubClient = new RedisClient({ host: 'redis', port: 6379 });
+const pubClient = new RedisClient({ host: 'localhost', port: 6379 });
 const subClient = pubClient.duplicate();
 io.adapter(createAdapter({ pubClient, subClient }));
 

@@ -9,7 +9,8 @@
   "pug": "^3.0.0",
   "socket.io": "^2.3.0",
   "tracer": "^1.1.4",
-  "socket.io-redis": "^5.4.0"
+  "socket.io-redis": "^5.4.0",
+  "redis": "^3.0.0"
  },
  "scripts": {
   "start": "yarn compile && node dist/index.js",
