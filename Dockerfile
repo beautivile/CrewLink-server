@@ -11,7 +11,7 @@ WORKDIR /app
 USER node
 
 # Copy the repo contents from the build context into the image
-COPY ./ /app/
+COPY --chown=node:node ./ /app/
 
 # Install NPM packages
 RUN yarn install
