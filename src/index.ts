@@ -6,6 +6,8 @@ import { join } from 'path';
 import socketIO from 'socket.io';
 import Tracer from 'tracer';
 import morgan from 'morgan';
+import { createAdapter } from 'socket.io-redis';
+import { RedisClient } from 'redis';
 
 const supportedCrewLinkVersions = new Set(['1.2.0', '1.2.1']);
 const httpsEnabled = !!process.env.HTTPS;
@@ -29,6 +31,10 @@ if (httpsEnabled) {
 	server = new Server(app);
 }
 const io = socketIO(server);
+
+const pubClient = new RedisClient({ host: 'redis', port: 6379 });
+const subClient = pubClient.duplicate();
+io.adapter(createAdapter({ pubClient, subClient }));
 
 const clients = new Map<string, Client>();
 
